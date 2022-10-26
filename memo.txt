@@ -1,0 +1,33 @@
+chapter5_4_5.pyの解説
+
+trial -> Map init -> Mcl init -> EstimationAgent init -> Robot init
+-> world.draw(アニメーションコールバック->one_step)
+-> world.one_step
+-> world内のobjectでone_stepがあるクラス（Map, robot, robotはsensorでカメラを持つ、agentでMclを持つ）
+	のdrawをそれぞれ実行
+	そのあとにone_stepがあれば実行する（各クラスに）
+-> Map draw
+	-> landmark draw
+		描画
+-> Camera draw 
+	get land mark position
+	
+-> Estimation Agent draw 
+	-> Mcl draw
+		各パーティクルの位置を取得
+
+-> robotのone_stepを実施する
+	Camera.dataでランドマークの位置取得
+	agent.decision
+		->Mcl.motion update
+			->particleのmotion_update
+				->IdealRobotのstate_transition
+
+	Mclのobservation_update
+		->particleのobservation update
+			multivariate_normalでパーティクルの重み更新
+			
+
+					
+			
+
